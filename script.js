@@ -22,7 +22,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 });
 
 // Typewriter Effect
-const words = ['Full-Stack Developer', 'UI/UX Designer', 'Problem Solver'];
+const words = ['Full-Stack Developer', 'Problem Solver'];
 const typedTextSpan = document.querySelector('#typed-text');
 let wordIndex = 0;
 let charIndex = 0;
