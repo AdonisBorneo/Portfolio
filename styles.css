@@ -7,7 +7,6 @@
     --text-secondary: #d1d5db;
     --card-bg: #1f2937;
     --nav-bg: rgba(17, 24, 39, 0.8);
-    --glow-color: rgba(59, 130, 246, 0.5);
 }
 
 [data-theme="dark"] {
@@ -67,6 +66,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
+    animation: float 4s ease-in-out infinite;
 }
 
 .nav-links {
@@ -120,34 +120,12 @@ body {
     margin-bottom: 1rem;
     opacity: 0;
     animation: fadeUp 1s forwards;
-    position: relative;
-    display: inline-block;
-}
-
-.hero h1::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--primary-color);
-    animation: rainbow 8s linear infinite;
 }
 
 .typewriter {
     font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 2rem;
-    position: relative;
-}
-
-.typewriter::after {
-    content: '{ }';
-    position: absolute;
-    right: -40px;
-    animation: float 3s ease-in-out infinite;
-    opacity: 0.5;
 }
 
 .cursor {
@@ -217,14 +195,16 @@ body {
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
     position: relative;
     overflow: hidden;
+    animation: tilt 5s ease-in-out infinite;
+    transform-origin: center;
 }
 
 .about-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    animation: glow 2s ease-in-out infinite;
+    animation: none;
+    transform: scale(1.05) translateY(-10px);
 }
 
 .about-card::before {
@@ -247,11 +227,7 @@ body {
     font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
-    transition: transform 0.3s;
-}
-
-.about-card:hover i {
-    animation: spin 2s linear infinite;
+    animation: glow 3s infinite;
 }
 
 .about-card h3 {
@@ -281,18 +257,15 @@ body {
 
 .skills-category h3 {
     margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
 }
 
-.skills-category h3::before {
-    content: '< />';
-    position: absolute;
-    left: -40px;
-    font-size: 0.8em;
-    opacity: 0.5;
-    animation: wave 2s ease-in-out infinite;
+.skills-category {
+    opacity: 0;
+    animation: scaleIn 0.5s forwards;
 }
+
+.skills-category:nth-child(1) { animation-delay: 0.2s; }
+.skills-category:nth-child(2) { animation-delay: 0.4s; }
 
 .skill-bar {
     margin-bottom: 1.5rem;
@@ -321,11 +294,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
+    background: linear-gradient(
+        90deg,
         transparent,
         rgba(255, 255, 255, 0.2),
-        transparent);
-    animation: shimmer 2s infinite;
+        transparent
+    );
+    animation: progressShimmer 2s infinite;
 }
 
 .progress {
@@ -349,6 +324,11 @@ body {
 @keyframes shimmer {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(400%); }
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
 }
 
 /* Contact Section */
@@ -380,16 +360,12 @@ body {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
 }
 
 .contact-item.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-.contact-item:hover {
-    animation: float 3s ease-in-out infinite;
 }
 
 .contact-item i {
@@ -399,15 +375,21 @@ body {
 }
 
 .contact-item i.bounce {
-    animation: bounce 2s infinite;
+    animation: 
+        bounce 2s infinite,
+        glow 3s infinite;
 }
 
 .contact-item i.pulse {
-    animation: pulse 2s infinite;
+    animation: 
+        pulse 2s infinite,
+        glow 3s infinite;
 }
 
 .contact-item i.rotate {
-    animation: rotate 8s linear infinite;
+    animation: 
+        rotate 8s linear infinite,
+        glow 3s infinite;
 }
 
 .email-link {
@@ -447,23 +429,21 @@ body {
     font-size: 1.5rem;
 }
 
-.github-link::before {
+.github-link::after {
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, 
-        rgba(255, 255, 255, 0.2) 0%,
-        transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.github-link:hover::before {
-    opacity: 1;
-    animation: spin 4s linear infinite;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmerButton 3s infinite;
 }
 
 .social-links {
@@ -585,69 +565,80 @@ body {
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px var(--glow-color); }
-    50% { box-shadow: 0 0 40px var(--glow-color); }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
 }
 
 @keyframes wave {
     0% { transform: rotate(0deg); }
-    25% { transform: rotate(20deg); }
-    75% { transform: rotate(-15deg); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
 }
 
+@keyframes tilt {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
 @keyframes scaleIn {
-    from { transform: scale(0); opacity: 0; }
+    from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-@keyframes rainbow {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+/* Enhanced Hero Section */
+.hero-content h1 {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-content h1::after {
+    content: '👋';
+    position: absolute;
+    right: -50px;
+    top: 0;
+    font-size: 0.8em;
+    animation: wave 2.5s infinite;
+}
+
+.hero-buttons .btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-buttons .btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmerButton 3s infinite;
+}
+
+@keyframes shimmerButton {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
     .nav-links {
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--nav-bg);
-        backdrop-filter: blur(10px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        transition: right 0.3s ease-in-out;
+        display: none;
     }
 
-    .nav-links.active {
-        right: 0;
+    .mobile-menu {
+        display: block;
     }
-
-    .nav-links a {
-        font-size: 1.5rem;
-        opacity: 0;
-        transform: translateX(50px);
-    }
-
-    .nav-links.active a {
-        animation: slideIn 0.5s forwards;
-    }
-
-    .nav-links.active a:nth-child(1) { animation-delay: 0.1s; }
-    .nav-links.active a:nth-child(2) { animation-delay: 0.2s; }
-    .nav-links.active a:nth-child(3) { animation-delay: 0.3s; }
-    .nav-links.active a:nth-child(4) { animation-delay: 0.4s; }
-    .nav-links.active a:nth-child(5) { animation-delay: 0.5s; }
 
     .hero h1 {
         font-size: 2.5rem;
@@ -678,33 +669,19 @@ body {
     transform: translateY(0);
 }
 
-/* Cursor Trail Effect */
-.cursor-trail {
+/* Floating Animation for Elements */
+.logo {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Mouse trail effect */
+.mouse-trail {
     position: fixed;
     width: 10px;
     height: 10px;
-    background: var(--primary-color);
     border-radius: 50%;
     pointer-events: none;
-    opacity: 0;
     z-index: 9999;
-}
-
-/* Interactive Elements */
-.interactive-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.particle {
-    position: absolute;
-    background: var(--primary-color);
-    border-radius: 50%;
-    opacity: 0.1;
-    animation: float 3s infinite;
+    mix-blend-mode: difference;
+    transition: transform 0.1s;
 } 

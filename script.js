@@ -126,103 +126,46 @@ window.addEventListener('scroll', () => {
     hero.style.transform = `translateY(${scrolled * 0.5}px)`;
 });
 
-// Cursor trail effect
-function createCursorTrail() {
+// Mouse trail effect
+function createMouseTrail() {
+    const colors = ['#3b82f6', '#ec4899', '#8b5cf6', '#10b981'];
     const numDots = 20;
     const dots = [];
-    const mouse = { x: 0, y: 0 };
-    let mouseTimeout;
+    let mouseX = 0;
+    let mouseY = 0;
 
-    // Create dots
     for (let i = 0; i < numDots; i++) {
         const dot = document.createElement('div');
-        dot.className = 'cursor-trail';
+        dot.className = 'mouse-trail';
+        dot.style.background = colors[i % colors.length];
         document.body.appendChild(dot);
-        dots.push({ el: dot, x: 0, y: 0 });
+        dots.push({ dot, x: 0, y: 0 });
     }
 
-    // Update mouse position
     document.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        
-        // Show dots
-        dots.forEach(dot => dot.el.style.opacity = '0.6');
-        clearTimeout(mouseTimeout);
-        
-        // Hide dots when mouse stops
-        mouseTimeout = setTimeout(() => {
-            dots.forEach(dot => dot.el.style.opacity = '0');
-        }, 1000);
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 
-    // Animate dots
-    function animate() {
-        let x = mouse.x;
-        let y = mouse.y;
+    function updateDots() {
+        let currentX = mouseX;
+        let currentY = mouseY;
 
         dots.forEach((dot, index) => {
             const nextDot = dots[index + 1] || dots[0];
-            dot.x = x;
-            dot.y = y;
-            dot.el.style.transform = `translate(${x - 5}px, ${y - 5}px)`;
-            x += (nextDot.x - dot.x) * 0.6;
-            y += (nextDot.y - dot.y) * 0.6;
+            dot.x = currentX;
+            dot.y = currentY;
+            dot.dot.style.left = `${dot.x}px`;
+            dot.dot.style.top = `${dot.y}px`;
+            dot.dot.style.scale = (numDots - index) / numDots;
+            currentX += (nextDot.x - dot.x) * 0.3;
+            currentY += (nextDot.y - dot.y) * 0.3;
         });
 
-        requestAnimationFrame(animate);
+        requestAnimationFrame(updateDots);
     }
 
-    animate();
-}
-
-// Interactive background particles
-function createParticles() {
-    const container = document.createElement('div');
-    container.className = 'interactive-bg';
-    document.body.appendChild(container);
-
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.width = Math.random() * 5 + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = Math.random() * 100 + 'vh';
-        particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        particle.style.animationDelay = Math.random() * 2 + 's';
-        container.appendChild(particle);
-    }
-}
-
-// Enhanced mobile menu
-function enhanceMobileMenu() {
-    const mobileMenuBtn = document.querySelector('.mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
-    });
-}
-
-// Magnetic effect for buttons
-function addMagneticEffect() {
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            btn.style.transform = `translate(${x/10}px, ${y/10}px)`;
-        });
-        
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
-        });
-    });
+    updateDots();
 }
 
 // Enhanced scroll animations
@@ -233,19 +176,42 @@ function enhanceScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                entry.target.style.animationDelay = Math.random() * 0.5 + 's';
+                entry.target.style.transitionDelay = `${Math.random() * 0.5}s`;
             }
         });
     }, { threshold: 0.1 });
-    
+
     elements.forEach(element => observer.observe(element));
 }
 
-// Initialize all new features
+// Tilt effect for cards
+function addTiltEffect() {
+    const cards = document.querySelectorAll('.about-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const angleX = (y - centerY) / 20;
+            const angleY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
+
+// Initialize all animations
 document.addEventListener('DOMContentLoaded', () => {
-    createCursorTrail();
-    createParticles();
-    enhanceMobileMenu();
-    addMagneticEffect();
+    createMouseTrail();
     enhanceScrollAnimations();
+    addTiltEffect();
 }); 
