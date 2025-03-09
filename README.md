@@ -1,16 +1,26 @@
 # Personal Portfolio
 
-A modern, responsive portfolio website built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
+A modern, responsive portfolio website built with vanilla HTML, CSS, and JavaScript.
 
 ## Features
 
-- 🌓 Dark/Light mode support
+- 🌓 Dark/Light mode with theme persistence
 - 📱 Fully responsive design
-- ⚡ Next.js 14 App Router
-- 🎨 Beautiful animations with Framer Motion
-- 🎯 TypeScript for type safety
-- 🎨 Tailwind CSS for styling
-- 🚀 Fast page loads and optimized performance
+- ✨ Smooth animations and transitions
+- ⚡ Fast loading and performance
+- 🎨 Modern UI with clean design
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Font Awesome Icons
+- Google Fonts (Poppins)
+
+## View Live
+
+Visit [https://adonisborneo.github.io/Portfolio](https://adonisborneo.github.io/Portfolio) to see the live website.
 
 ## Getting Started
 
