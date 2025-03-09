@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Navbar } from "@/components/layout/navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Your Name",
-  description: "Professional portfolio showcasing my work and experience",
+  title: "Adonis Borneo | Full-Stack Developer & UI/UX Designer",
+  description: "Portfolio of Adonis Borneo - Full-Stack Developer and UI/UX Designer specializing in modern web applications and beautiful user experiences.",
 };
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>

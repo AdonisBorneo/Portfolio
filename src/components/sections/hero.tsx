@@ -6,19 +6,19 @@ import { TypewriterEffect } from "../ui/typewriter-effect";
 export function HeroSection() {
   const words = [
     {
-      text: "Build",
+      text: "Full-Stack",
     },
     {
-      text: "amazing",
+      text: "Developer",
     },
     {
-      text: "things",
+      text: "&",
     },
     {
-      text: "with",
+      text: "UI/UX",
     },
     {
-      text: "passion.",
+      text: "Designer",
       className: "text-blue-500 dark:text-blue-400",
     },
   ];
@@ -32,31 +32,31 @@ export function HeroSection() {
         className="text-center space-y-8"
       >
         <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold">
-          Hi, I&apos;m Your Name
+          Hi, I&apos;m Adonis Borneo
         </h1>
         <div className="text-2xl md:text-3xl font-heading">
           <TypewriterEffect words={words} />
         </div>
         <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-          A passionate full-stack developer crafting beautiful and functional web experiences.
-          Let&apos;s build something amazing together.
+          A passionate developer specializing in creating modern web applications and beautiful user experiences.
+          I transform ideas into elegant, functional solutions.
         </p>
         <div className="flex gap-4 justify-center">
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium"
+            className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90"
           >
-            Contact Me
+            Get in Touch
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#projects"
-            className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium"
+            className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/90"
           >
-            View Projects
+            View My Work
           </motion.a>
         </div>
       </motion.div>
