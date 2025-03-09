@@ -322,21 +322,181 @@ function addSwipeNavigation() {
     });
 }
 
-// Initialize mobile-specific features
-function initMobileFeatures() {
+// Add bottom navigation for mobile
+function addBottomNav() {
     if (window.innerWidth <= 768) {
-        addScrollIndicator();
-        addMobileTiltEffect();
-        addSwipeNavigation();
+        const bottomNav = document.createElement('nav');
+        bottomNav.className = 'bottom-nav';
+        bottomNav.innerHTML = `
+            <a href="#home" class="active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#about">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="#skills">
+                <i class="fas fa-code"></i>
+                <span>Skills</span>
+            </a>
+            <a href="#contact">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        `;
+        document.body.appendChild(bottomNav);
+
+        // Update active state on scroll
+        const bottomNavLinks = bottomNav.querySelectorAll('a');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    bottomNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
     }
 }
 
-// Initialize all animations and features
+// Add pull-to-refresh functionality
+function addPullToRefresh() {
+    if (window.innerWidth <= 768) {
+        const pullToRefresh = document.createElement('div');
+        pullToRefresh.className = 'pull-to-refresh';
+        document.body.appendChild(pullToRefresh);
+
+        let touchStart = 0;
+        let touchEnd = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStart = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            touchEnd = e.touches[0].clientY;
+            const distance = touchEnd - touchStart;
+
+            if (window.scrollY === 0 && distance > 0) {
+                pullToRefresh.classList.add('active');
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('touchend', () => {
+            if (pullToRefresh.classList.contains('active')) {
+                pullToRefresh.classList.remove('active');
+                location.reload();
+            }
+        });
+    }
+}
+
+// Add loading bar
+function addLoadingBar() {
+    const loadingBar = document.createElement('div');
+    loadingBar.className = 'loading-bar';
+    document.body.appendChild(loadingBar);
+
+    // Show loading bar on navigation
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+            loadingBar.classList.add('active');
+            setTimeout(() => loadingBar.classList.remove('active'), 500);
+        });
+    });
+}
+
+// Optimize scroll performance
+function optimizeScroll() {
+    let scrollTimeout;
+    const body = document.body;
+
+    window.addEventListener('scroll', () => {
+        if (!body.classList.contains('is-scrolling')) {
+            body.classList.add('is-scrolling');
+        }
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            body.classList.remove('is-scrolling');
+        }, 150);
+    }, { passive: true });
+}
+
+// Optimize touch interactions
+function optimizeTouchInteractions() {
+    if ('ontouchstart' in window) {
+        document.documentElement.style.setProperty('--hover-effect', 'none');
+        
+        const interactiveElements = document.querySelectorAll('a, button, .about-card, .contact-item');
+        interactiveElements.forEach(element => {
+            element.addEventListener('touchstart', () => {}, { passive: true });
+        });
+    }
+}
+
+// Handle mobile orientation changes
+function handleOrientationChange() {
+    if (window.innerWidth <= 768) {
+        const updateLayout = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+
+        window.addEventListener('resize', updateLayout);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateLayout, 100);
+        });
+
+        updateLayout();
+    }
+}
+
+// Initialize mobile features
+function initMobileFeatures() {
+    if (window.innerWidth <= 768) {
+        addBottomNav();
+        addPullToRefresh();
+        addLoadingBar();
+        optimizeScroll();
+        optimizeTouchInteractions();
+        handleOrientationChange();
+
+        // Remove heavy animations on mobile
+        document.querySelectorAll('.mouse-trail').forEach(el => el.remove());
+    }
+}
+
+// Initialize all features
 document.addEventListener('DOMContentLoaded', () => {
-    createMouseTrail();
+    if (window.innerWidth > 768) {
+        createMouseTrail();
+    }
     enhanceScrollAnimations();
     addTiltEffect();
     initMobileFeatures();
+});
+
+// Debounced resize handler
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (window.innerWidth <= 768) {
+            initMobileFeatures();
+        }
+    }, 250);
 });
 
 // Handle orientation changes
