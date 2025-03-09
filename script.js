@@ -105,30 +105,73 @@ function checkScroll() {
 window.addEventListener('scroll', checkScroll);
 checkScroll(); // Initial check
 
-// Skill bars animation
-const skillBars = document.querySelectorAll('.progress');
-
+// Enhanced Skill bars animation
 function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.progress');
+    const isMobile = window.innerWidth <= 768;
+
     skillBars.forEach(bar => {
         const percent = bar.getAttribute('data-percent');
+        
         if (isInViewport(bar) && !bar.style.width) {
-            bar.style.width = `${percent}%`;
+            if (isMobile) {
+                // Set CSS variable for the animation
+                bar.style.setProperty('--percent', `${percent}%`);
+                bar.classList.add('animate');
+            } else {
+                bar.style.width = `${percent}%`;
+            }
         }
     });
 }
 
+// Improved viewport detection for mobile
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    
+    // More generous threshold for mobile
+    const threshold = window.innerWidth <= 768 ? 0.2 : 0;
+    
     return (
-        rect.top >= 0 &&
+        rect.top >= -rect.height * threshold &&
         rect.left >= 0 &&
-        rect.bottom <= window.innerHeight &&
-        rect.right <= window.innerWidth
+        rect.bottom <= windowHeight * (1 + threshold) &&
+        rect.right <= windowWidth
     );
 }
 
-window.addEventListener('scroll', animateSkillBars);
-animateSkillBars();
+// Initialize mobile features
+function initMobileFeatures() {
+    if (window.innerWidth <= 768) {
+        addBottomNav();
+        addPullToRefresh();
+        addLoadingBar();
+        optimizeScroll();
+        optimizeTouchInteractions();
+        handleOrientationChange();
+
+        // Remove heavy animations on mobile
+        document.querySelectorAll('.mouse-trail').forEach(el => el.remove());
+        
+        // Force check skill bars on mobile
+        setTimeout(() => {
+            animateSkillBars();
+        }, 500);
+    }
+}
+
+// Add scroll event listener with throttling for better performance
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+            animateSkillBars();
+            scrollTimeout = null;
+        }, 100);
+    }
+}, { passive: true });
 
 // Parallax effect for hero section
 const hero = document.querySelector('.hero');
@@ -460,21 +503,6 @@ function handleOrientationChange() {
         });
 
         updateLayout();
-    }
-}
-
-// Initialize mobile features
-function initMobileFeatures() {
-    if (window.innerWidth <= 768) {
-        addBottomNav();
-        addPullToRefresh();
-        addLoadingBar();
-        optimizeScroll();
-        optimizeTouchInteractions();
-        handleOrientationChange();
-
-        // Remove heavy animations on mobile
-        document.querySelectorAll('.mouse-trail').forEach(el => el.remove());
     }
 }
 
