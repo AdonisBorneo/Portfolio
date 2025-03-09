@@ -7,7 +7,18 @@ const mobileMenuBtn = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
 mobileMenuBtn.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    mobileMenuBtn.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+});
+
+// Close mobile menu when clicking a link
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+    });
 });
 
 // Typewriter Effect
@@ -209,9 +220,129 @@ function addTiltEffect() {
     });
 }
 
-// Initialize all animations
+// Add scroll indicator for mobile
+function addScrollIndicator() {
+    if (window.innerWidth <= 768) {
+        const indicator = document.createElement('div');
+        indicator.className = 'scroll-indicator';
+        document.body.appendChild(indicator);
+
+        // Hide indicator after first scroll
+        const hideIndicator = () => {
+            indicator.style.opacity = '0';
+            setTimeout(() => indicator.remove(), 300);
+            window.removeEventListener('scroll', hideIndicator);
+        };
+
+        window.addEventListener('scroll', hideIndicator);
+    }
+}
+
+// Touch-based tilt effect for cards on mobile
+function addMobileTiltEffect() {
+    const cards = document.querySelectorAll('.about-card');
+    
+    cards.forEach(card => {
+        let touch = {
+            startX: 0,
+            startY: 0,
+            dx: 0,
+            dy: 0
+        };
+
+        card.addEventListener('touchstart', (e) => {
+            touch.startX = e.touches[0].clientX;
+            touch.startY = e.touches[0].clientY;
+        });
+
+        card.addEventListener('touchmove', (e) => {
+            if (!touch.startX || !touch.startY) return;
+
+            touch.dx = e.touches[0].clientX - touch.startX;
+            touch.dy = e.touches[0].clientY - touch.startY;
+
+            const tiltX = touch.dy / 10;
+            const tiltY = -touch.dx / 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            e.preventDefault();
+        });
+
+        card.addEventListener('touchend', () => {
+            card.style.transform = '';
+            touch.startX = touch.startY = touch.dx = touch.dy = 0;
+        });
+    });
+}
+
+// Swipe navigation for mobile
+function addSwipeNavigation() {
+    let touchStart = null;
+    let touchEnd = null;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStart = e.touches[0].clientX;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        touchEnd = e.touches[0].clientX;
+    });
+
+    document.addEventListener('touchend', () => {
+        if (!touchStart || !touchEnd) return;
+
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > 50;
+        const isRightSwipe = distance < -50;
+
+        if (isLeftSwipe || isRightSwipe) {
+            const sections = Array.from(document.querySelectorAll('section'));
+            const currentSection = sections.find(section => {
+                const rect = section.getBoundingClientRect();
+                return rect.top <= 100 && rect.bottom >= 100;
+            });
+
+            if (currentSection) {
+                const currentIndex = sections.indexOf(currentSection);
+                let targetSection;
+
+                if (isLeftSwipe && currentIndex < sections.length - 1) {
+                    targetSection = sections[currentIndex + 1];
+                } else if (isRightSwipe && currentIndex > 0) {
+                    targetSection = sections[currentIndex - 1];
+                }
+
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        touchStart = touchEnd = null;
+    });
+}
+
+// Initialize mobile-specific features
+function initMobileFeatures() {
+    if (window.innerWidth <= 768) {
+        addScrollIndicator();
+        addMobileTiltEffect();
+        addSwipeNavigation();
+    }
+}
+
+// Initialize all animations and features
 document.addEventListener('DOMContentLoaded', () => {
     createMouseTrail();
     enhanceScrollAnimations();
     addTiltEffect();
+    initMobileFeatures();
+});
+
+// Handle orientation changes
+window.addEventListener('orientationchange', () => {
+    // Reset any necessary styles or states
+    navLinks.classList.remove('active');
+    mobileMenuBtn.classList.remove('active');
+    document.body.style.overflow = '';
 }); 
