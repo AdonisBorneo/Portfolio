@@ -16,7 +16,7 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, Tailwi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/AdonisBorneo/portfolio.git
 ```
 
 2. Install dependencies:
@@ -44,7 +44,7 @@ This portfolio is configured for deployment on GitHub Pages. To deploy:
 
 1. Push your changes to the main branch
 2. GitHub Actions will automatically build and deploy your site
-3. Your site will be available at `https://yourusername.github.io/portfolio`
+3. Your site will be available at `https://AdonisBorneo.github.io/portfolio`
 
 ## License
 
