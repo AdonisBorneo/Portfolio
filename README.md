@@ -4,6 +4,8 @@ Welcome to my personal portfolio website! I am Adonis Borneo, a passionate Full-
 Features
 Responsive Design: Optimized for both desktop and mobile devices.
 Dark Mode: Consistent dark theme for a sleek look.
+
+
 Smooth Animations: Enhanced user experience with smooth scrolling and animations.
 Interactive Elements: Includes typewriter effect, skill bars animation, and more.
 Contact Section: Easy ways to get in touch via email, GitHub, and LinkedIn.
