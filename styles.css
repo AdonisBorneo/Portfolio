@@ -195,16 +195,12 @@ body {
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    animation: tilt 5s ease-in-out infinite;
-    transform-origin: center;
-}
-
-.about-card:hover {
-    animation: none;
-    transform: scale(1.05) translateY(-10px);
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-card::before {
@@ -214,9 +210,20 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(59, 130, 246, 0.1),
+        transparent
+    );
     transform: translateX(-100%);
     transition: transform 0.6s;
+    z-index: -1;
+}
+
+.about-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 }
 
 .about-card:hover::before {
@@ -224,23 +231,90 @@ body {
 }
 
 .about-card i {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    animation: glow 3s infinite;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--primary-color), #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    animation: floatIcon 3s ease-in-out infinite;
 }
 
 .about-card h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.about-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.about-card:hover h3::after {
+    width: 100%;
 }
 
 .about-card ul {
     list-style: none;
     color: var(--text-secondary);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.about-card:hover ul {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .about-card li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.about-card:hover li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-card li:nth-child(1) { transition-delay: 0.1s; }
+.about-card li:nth-child(2) { transition-delay: 0.2s; }
+.about-card li:nth-child(3) { transition-delay: 0.3s; }
+
+.about-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.about-card:hover li::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
 }
 
 /* Skills Section */
@@ -258,6 +332,7 @@ body {
 
 .skills-category h3 {
     margin-bottom: 2rem;
+    color: var(--primary-color);
 }
 
 .skills-category {
@@ -270,8 +345,6 @@ body {
 
 .skill-bar {
     margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
 }
 
 .skill-info {
@@ -282,26 +355,9 @@ body {
 
 .progress-bar {
     height: 8px;
-    background: var(--secondary-color);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     overflow: hidden;
-    position: relative;
-}
-
-.progress-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    animation: progressShimmer 2s infinite;
 }
 
 .progress {
@@ -311,25 +367,11 @@ body {
     transition: width 1s ease-out;
 }
 
-.progress-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 30px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(400%); }
-}
-
-@keyframes progressShimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
+/* Remove all shimmer and glow effects */
+.progress-bar::before,
+.progress-bar::after,
+.progress::after {
+    display: none;
 }
 
 /* Contact Section */
@@ -782,35 +824,13 @@ body {
     .progress {
         transition: width 0.5s ease-out;
         background: var(--primary-color);
-        position: relative;
-        overflow: hidden;
     }
 
-    /* Add loading animation for skill bars */
-    .progress.animate {
-        animation: loadBar 1s ease-out forwards;
-    }
-
-    @keyframes loadBar {
-        from { width: 0; }
-        to { width: var(--percent); }
-    }
-
-    /* Add subtle pulse effect to skill bars */
-    .progress::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-        );
-        animation: pulse 2s infinite;
+    /* Remove all shimmer and pulse effects */
+    .progress::after,
+    .progress-bar::after,
+    .progress-bar::before {
+        display: none;
     }
 
     /* Mobile-optimized contact section */
@@ -998,4 +1018,33 @@ body {
     z-index: 9999;
     mix-blend-mode: difference;
     transition: transform 0.1s;
+}
+
+/* Add new animation for LinkedIn button */
+.linkedin-link {
+    background: #0077b5 !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.linkedin-link::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmerLinkedIn 3s infinite;
+}
+
+@keyframes shimmerLinkedIn {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
 } 
