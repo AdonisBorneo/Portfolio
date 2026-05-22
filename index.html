@@ -304,6 +304,56 @@
       font-size: 15px;
     }
 
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      color: var(--gold-light);
+      background: linear-gradient(145deg, rgba(184,134,59,0.17), rgba(255,255,255,0.04));
+      border: 1px solid rgba(214,180,106,0.26);
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .market-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      border-radius: var(--radius);
+      padding: 26px;
+      min-height: 220px;
+    }
+
+    .market-card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .market-card p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
     .split {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
@@ -438,6 +488,7 @@
       <nav>
         <ul>
           <li><a href="#services">Services</a></li>
+          <li><a href="#markets">Markets</a></li>
           <li><a href="#approach">Approach</a></li>
           <li><a href="#profile">Profile</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -468,7 +519,7 @@
             <li><span>Focus</span><strong>Investments</strong></li>
             <li><span>Field</span><strong>Consulting</strong></li>
             <li><span>Base</span><strong>Zagreb, Croatia</strong></li>
-            <li><span>Network</span><strong>EU / UAE</strong></li>
+            <li><span>Network</span><strong>EU / UAE / China / USA</strong></li>
           </ul>
         </aside>
       </div>
@@ -483,39 +534,100 @@
 
         <div class="cards">
           <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 17V9"/><path d="M12 17V5"/><path d="M18 17v-6"/><path d="M4 9l8-6 8 6"/></svg>
+            </div>
             <span class="number">01</span>
             <h3>Investment Strategy</h3>
             <p>Structuring opportunities, defining value propositions, preparing investor narratives and positioning projects for funding discussions.</p>
           </article>
 
           <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h1"/></svg>
+            </div>
             <span class="number">02</span>
             <h3>Project Documentation</h3>
             <p>Coordination of presentations, business overviews, supporting documents, project summaries and communication packages.</p>
           </article>
 
           <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/><path d="M16 7h3v3"/></svg>
+            </div>
             <span class="number">03</span>
             <h3>Economic Consulting</h3>
             <p>Financial logic, SWOT analysis, market reasoning, profitability assumptions and strategic decision support.</p>
           </article>
 
           <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3z"/><path d="M8 11c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3z"/><path d="M2 20c.6-3 2.7-5 6-5s5.4 2 6 5"/><path d="M12 20c.4-2.1 1.8-3.8 4-4.6 2.7.4 4.5 2.2 5 4.6"/></svg>
+            </div>
             <span class="number">04</span>
             <h3>Business Development</h3>
             <p>Identifying partnerships, preparing outreach, building credibility and opening conversations with relevant stakeholders.</p>
           </article>
 
           <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M12 3l9 7H3z"/><path d="M9 21v-7"/><path d="M15 21v-7"/></svg>
+            </div>
             <span class="number">05</span>
             <h3>Government & Institutional Relations</h3>
             <p>Support in preparing professional communication with public bodies, institutions, municipalities and strategic partners.</p>
           </article>
 
           <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
+            </div>
             <span class="number">06</span>
             <h3>Project Management</h3>
             <p>Helping organize tasks, timelines, responsibilities and communication between investors, advisors, consultants and operators.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="markets">
+      <div class="container">
+        <div class="section-head">
+          <h2>International Reach</h2>
+          <p>Focused on cross-border opportunities, strategic relationships and investment conversations across key markets.</p>
+        </div>
+
+        <div class="market-grid">
+          <article class="market-card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
+            </div>
+            <h3>European Union</h3>
+            <p>Croatia-based access point for regional projects, real estate opportunities and European business coordination.</p>
+          </article>
+
+          <article class="market-card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M9 20v-6h6v6"/><path d="M10 9h4"/></svg>
+            </div>
+            <h3>UAE</h3>
+            <p>Business and investment orientation toward Dubai, commodities, international partnerships and capital networks.</p>
+          </article>
+
+          <article class="market-card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M7 14h10"/><path d="M4 21h16"/><path d="M8 3h8"/></svg>
+            </div>
+            <h3>China</h3>
+            <p>Strategic attention toward Chinese investment channels, infrastructure logic, institutional cooperation and trade flows.</p>
+          </article>
+
+          <article class="market-card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.2 2.2 7L12 16l-6.7 4.2 2.2-7L2 9h7z"/></svg>
+            </div>
+            <h3>USA</h3>
+            <p>Connection point for corporate structures, international finance conversations, strategic partnerships and project scaling.</p>
           </article>
         </div>
       </div>
@@ -575,9 +687,9 @@
 
         <div class="stats">
           <div class="stat"><b>EU</b><span>Croatia-based business network</span></div>
-          <div class="stat"><b>UAE</b><span>International investment interest</span></div>
-          <div class="stat"><b>4+</b><span>Business sectors experienced</span></div>
-          <div class="stat"><b>360°</b><span>Project-to-partner coordination</span></div>
+          <div class="stat"><b>UAE</b><span>Dubai and international investment focus</span></div>
+          <div class="stat"><b>CN</b><span>China-oriented strategic cooperation</span></div>
+          <div class="stat"><b>USA</b><span>Corporate and finance structuring interest</span></div>
         </div>
       </div>
     </section>
