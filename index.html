@@ -402,7 +402,7 @@
 
     .market-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
     }
 
@@ -470,7 +470,7 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
       margin-top: 28px;
     }
@@ -537,13 +537,14 @@
     @media (max-width: 920px) {
       .hero-grid, .split { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr 1fr; }
+      .market-grid { grid-template-columns: 1fr 1fr; }
       .stats { grid-template-columns: 1fr 1fr; }
       nav ul { display: none; }
       .statement-card { min-height: auto; }
     }
 
     @media (max-width: 620px) {
-      .cards, .stats { grid-template-columns: 1fr; }
+      .cards, .market-grid, .stats { grid-template-columns: 1fr; }
       .section-head { display: block; }
       .section-head p { margin-top: 18px; }
       .step { grid-template-columns: 1fr; }
@@ -576,7 +577,7 @@
           <h1>For people building things too serious for ordinary consulting.</h1>
           <p>
             I work with investors, founders, project owners and strategic partners on opportunities that require structure,
-            discretion, sharp positioning and international coordination across the EU, UAE, China and the USA.
+            discretion, sharp positioning and international coordination across the EU, UAE, China, the USA and selected African markets.
           </p>
           <div class="actions">
             <a class="btn" href="mailto:adonisborneosalihi@gmail.com">Start a Conversation</a>
@@ -592,7 +593,7 @@
             <li><span>Focus</span><strong>Investments</strong></li>
             <li><span>Field</span><strong>Strategic Advisory</strong></li>
             <li><span>Base</span><strong>Zagreb, Croatia</strong></li>
-            <li><span>Network</span><strong>EU / UAE / China / USA</strong></li>
+            <li><span>Network</span><strong>EU / UAE / China / USA / Africa</strong></li>
           </ul>
           <div class="deal-note">Selected advisory focus: capital conversations, investor positioning, project documentation, market entry logic, institutional coordination and high-value business development.</div>
         </aside>
@@ -668,7 +669,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Cross-Border Focus</h2>
-          <p>Designed for opportunities that move between markets, capital sources, institutions and strategic partners.</p>
+          <p>Designed for opportunities that move between markets, capital sources, institutions and strategic partners across Europe, the Middle East, Asia, North America and Africa.</p>
         </div>
 
         <div class="market-grid">
@@ -702,6 +703,14 @@
             </div>
             <h3>USA</h3>
             <p>Connection point for corporate structures, international finance conversations, strategic partnerships and project scaling.</p>
+          </article>
+
+          <article class="market-card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12z"/><path d="M9 15c1.5 1.2 4.5 1.2 6 0"/><path d="M10 10h.01"/><path d="M14 10h.01"/></svg>
+            </div>
+            <h3>Africa</h3>
+            <p>Selective focus on Gabon, Ivory Coast and Burkina Faso for natural resources, infrastructure, trade and strategic development opportunities.</p>
           </article>
         </div>
       </div>
@@ -764,6 +773,7 @@
           <div class="stat"><b>UAE</b><span>Dubai and international investment focus</span></div>
           <div class="stat"><b>CN</b><span>China-oriented strategic cooperation</span></div>
           <div class="stat"><b>USA</b><span>Corporate and finance structuring interest</span></div>
+          <div class="stat"><b>AFR</b><span>Gabon, Ivory Coast and Burkina Faso focus</span></div>
         </div>
       </div>
     </section>
