@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adonis Borneo | Investment & Strategic Consulting</title>
-  <meta name="description" content="Adonis Borneo - investment consulting, strategic advisory, project development, documentation, economic analysis and partnership coordination." />
+  <title>Adonis Borneo | Strategic Investment Advisory</title>
+  <meta name="description" content="Adonis Borneo - strategic investment advisory, international project positioning, business development, capital strategy and high-level consulting." />
   <style>
     :root {
       --navy: #071321;
@@ -128,11 +128,44 @@
     }
 
     .hero {
-      min-height: 88vh;
+      min-height: 94vh;
       display: grid;
       align-items: center;
-      padding: 90px 0 70px;
+      padding: 100px 0 80px;
       position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 760px;
+      height: 760px;
+      right: -310px;
+      top: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(214,180,106,0.18), transparent 62%);
+      border: 1px solid rgba(214,180,106,0.08);
+      z-index: -1;
+    }
+
+    .signature-line {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 18px;
+      align-items: center;
+      max-width: 520px;
+      color: var(--gold-light);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .signature-line::before {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-light), transparent);
     }
 
     .hero-grid {
@@ -181,13 +214,16 @@
 
     .statement-card {
       position: relative;
-      border: 1px solid rgba(214,180,106,0.28);
-      background: linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border: 1px solid rgba(214,180,106,0.32);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.105), rgba(255,255,255,0.025)),
+        radial-gradient(circle at 80% 20%, rgba(184,134,59,0.18), transparent 34%);
       border-radius: var(--radius);
-      padding: 36px;
+      padding: 38px;
       box-shadow: var(--shadow);
-      min-height: 420px;
+      min-height: 500px;
       overflow: hidden;
+      isolation: isolate;
     }
 
     .statement-card::before {
@@ -202,14 +238,49 @@
     }
 
     .statement-card::after {
-      content: "AB";
+      content: "ADONIS";
       position: absolute;
-      right: 26px;
-      bottom: -10px;
-      font-size: 130px;
+      right: -22px;
+      bottom: 16px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 78px;
       line-height: 1;
+      letter-spacing: 0.08em;
       color: rgba(255,255,255,0.035);
       font-weight: 700;
+    }
+
+    .seal {
+      position: absolute;
+      right: 34px;
+      top: 34px;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      border: 1px solid rgba(214,180,106,0.36);
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-transform: uppercase;
+      background: rgba(7,19,33,0.48);
+    }
+
+    .deal-note {
+      position: relative;
+      z-index: 1;
+      margin-top: 30px;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--line);
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .quote {
@@ -501,26 +572,29 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Investment & Strategic Consulting</span>
-          <h1>Building serious projects through strategy, structure and trusted execution.</h1>
+          <span class="eyebrow">Private Strategic Advisory</span>
+          <h1>For people building things too serious for ordinary consulting.</h1>
           <p>
-            I support investors, companies and project owners with business development, investment positioning,
-            documentation coordination, economic analysis and partnership strategy across Croatia and international markets.
+            I work with investors, founders, project owners and strategic partners on opportunities that require structure,
+            discretion, sharp positioning and international coordination across the EU, UAE, China and the USA.
           </p>
           <div class="actions">
             <a class="btn" href="mailto:adonisborneosalihi@gmail.com">Start a Conversation</a>
-            <a class="btn secondary" href="#services">View Services</a>
+            <a class="btn secondary" href="#services">View Advisory Areas</a>
           </div>
+          <div class="signature-line">Strategy. Capital. Access. Execution.</div>
         </div>
 
         <aside class="statement-card" aria-label="Professional statement">
-          <div class="quote">“I look at every serious project as if it were my own.”</div>
+          <div class="seal">Strategic<br>Access</div>
+          <div class="quote">“My role is simple: make serious opportunities look credible, structured and impossible to ignore.”</div>
           <ul class="meta-list">
             <li><span>Focus</span><strong>Investments</strong></li>
-            <li><span>Field</span><strong>Consulting</strong></li>
+            <li><span>Field</span><strong>Strategic Advisory</strong></li>
             <li><span>Base</span><strong>Zagreb, Croatia</strong></li>
             <li><span>Network</span><strong>EU / UAE / China / USA</strong></li>
           </ul>
+          <div class="deal-note">Selected advisory focus: capital conversations, investor positioning, project documentation, market entry logic, institutional coordination and high-value business development.</div>
         </aside>
       </div>
     </section>
@@ -528,8 +602,8 @@
     <section id="services">
       <div class="container">
         <div class="section-head">
-          <h2>Consulting Services</h2>
-          <p>Clear advisory support for serious business initiatives, from early concept to investor-ready execution.</p>
+          <h2>Advisory Areas</h2>
+          <p>Built for projects where presentation, credibility and strategic access can change the entire outcome.</p>
         </div>
 
         <div class="cards">
@@ -538,8 +612,8 @@
               <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 17V9"/><path d="M12 17V5"/><path d="M18 17v-6"/><path d="M4 9l8-6 8 6"/></svg>
             </div>
             <span class="number">01</span>
-            <h3>Investment Strategy</h3>
-            <p>Structuring opportunities, defining value propositions, preparing investor narratives and positioning projects for funding discussions.</p>
+            <h3>Capital & Investment Strategy</h3>
+            <p>Structuring opportunities, defining investor logic, sharpening the value proposition and preparing projects for serious capital conversations.</p>
           </article>
 
           <article class="card">
@@ -547,8 +621,8 @@
               <svg viewBox="0 0 24 24"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h1"/></svg>
             </div>
             <span class="number">02</span>
-            <h3>Project Documentation</h3>
-            <p>Coordination of presentations, business overviews, supporting documents, project summaries and communication packages.</p>
+            <h3>Investor-Grade Documentation</h3>
+            <p>Premium project decks, business overviews, executive summaries, supporting documents and communication packages that look institution-ready.</p>
           </article>
 
           <article class="card">
@@ -556,8 +630,8 @@
               <svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/><path d="M16 7h3v3"/></svg>
             </div>
             <span class="number">03</span>
-            <h3>Economic Consulting</h3>
-            <p>Financial logic, SWOT analysis, market reasoning, profitability assumptions and strategic decision support.</p>
+            <h3>Commercial Intelligence</h3>
+            <p>Financial logic, SWOT analysis, market reasoning, profitability assumptions and decision support for investment-grade conversations.</p>
           </article>
 
           <article class="card">
@@ -565,8 +639,8 @@
               <svg viewBox="0 0 24 24"><path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3z"/><path d="M8 11c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3z"/><path d="M2 20c.6-3 2.7-5 6-5s5.4 2 6 5"/><path d="M12 20c.4-2.1 1.8-3.8 4-4.6 2.7.4 4.5 2.2 5 4.6"/></svg>
             </div>
             <span class="number">04</span>
-            <h3>Business Development</h3>
-            <p>Identifying partnerships, preparing outreach, building credibility and opening conversations with relevant stakeholders.</p>
+            <h3>Strategic Business Development</h3>
+            <p>Identifying partners, preparing outreach, building credibility and opening high-value conversations with the right stakeholders.</p>
           </article>
 
           <article class="card">
@@ -574,8 +648,8 @@
               <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M12 3l9 7H3z"/><path d="M9 21v-7"/><path d="M15 21v-7"/></svg>
             </div>
             <span class="number">05</span>
-            <h3>Government & Institutional Relations</h3>
-            <p>Support in preparing professional communication with public bodies, institutions, municipalities and strategic partners.</p>
+            <h3>Institutional Positioning</h3>
+            <p>Professional communication and positioning toward public bodies, institutions, municipalities and strategic partners.</p>
           </article>
 
           <article class="card">
@@ -583,8 +657,8 @@
               <svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
             </div>
             <span class="number">06</span>
-            <h3>Project Management</h3>
-            <p>Helping organize tasks, timelines, responsibilities and communication between investors, advisors, consultants and operators.</p>
+            <h3>Execution Coordination</h3>
+            <p>Organizing tasks, timelines, responsibilities and communication between investors, advisors, consultants, operators and decision-makers.</p>
           </article>
         </div>
       </div>
@@ -593,8 +667,8 @@
     <section id="markets">
       <div class="container">
         <div class="section-head">
-          <h2>International Reach</h2>
-          <p>Focused on cross-border opportunities, strategic relationships and investment conversations across key markets.</p>
+          <h2>Cross-Border Focus</h2>
+          <p>Designed for opportunities that move between markets, capital sources, institutions and strategic partners.</p>
         </div>
 
         <div class="market-grid">
@@ -637,10 +711,10 @@
       <div class="container split">
         <div class="panel">
           <span class="eyebrow">Method</span>
-          <h2>From idea to investor-ready structure.</h2>
+          <h2>From raw opportunity to serious investor narrative.</h2>
           <p>
-            The goal is not only to make a project look professional. The goal is to make it understandable,
-            credible and ready for serious business conversations.
+            The goal is not only to make a project look professional. The goal is to make it feel inevitable,
+            bankable, strategically positioned and ready for the room where decisions are made.
           </p>
           <a class="btn" href="#contact">Discuss a Project</a>
         </div>
@@ -681,8 +755,8 @@
     <section id="profile">
       <div class="container">
         <div class="section-head">
-          <h2>Professional Profile</h2>
-          <p>A background combining technology, business, management, real estate, institutional communication and international deal flow.</p>
+          <h2>Why It Feels Different</h2>
+          <p>A profile positioned at the intersection of investment logic, business development, project strategy, institutional communication and international deal flow.</p>
         </div>
 
         <div class="stats">
@@ -698,10 +772,10 @@
       <div class="container">
         <div class="contact">
           <span class="eyebrow">Contact</span>
-          <h2>Let’s build the next serious opportunity.</h2>
+          <h2>Serious projects need serious positioning.</h2>
           <p>
-            For investment consulting, project documentation, business development or partnership discussions,
-            contact me directly by email.
+            For investment advisory, project documentation, business development, market positioning or strategic partnership discussions,
+            contact me directly.
           </p>
           <a class="btn" href="mailto:adonisborneosalihi@gmail.com">adonisborneosalihi@gmail.com</a>
         </div>
@@ -712,7 +786,7 @@
   <footer>
     <div class="container footer-row">
       <span>© 2026 Adonis Borneo. All rights reserved.</span>
-      <span>Investment & Strategic Consulting</span>
+      <span>Private Strategic Advisory</span>
     </div>
   </footer>
 </body>
