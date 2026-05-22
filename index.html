@@ -1,216 +1,607 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adonis Borneo | Full-Stack Developer</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adonis Borneo | Investment & Strategic Consulting</title>
+  <meta name="description" content="Adonis Borneo - investment consulting, strategic advisory, project development, documentation, economic analysis and partnership coordination." />
+  <style>
+    :root {
+      --navy: #071321;
+      --navy-2: #0c1c2e;
+      --gold: #b8863b;
+      --gold-light: #d6b46a;
+      --cream: #f6f1e8;
+      --white: #ffffff;
+      --muted: #aeb8c5;
+      --line: rgba(255,255,255,0.12);
+      --shadow: 0 30px 80px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(184,134,59,0.24), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(255,255,255,0.07), transparent 24%),
+        linear-gradient(135deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 100%);
+      background-size: auto, auto, 42px 42px;
+      opacity: 0.9;
+      z-index: -2;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(7,19,33,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(214,180,106,0.55);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      background: linear-gradient(145deg, rgba(184,134,59,0.18), rgba(255,255,255,0.04));
+      box-shadow: 0 0 30px rgba(184,134,59,0.18);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a:hover { color: var(--gold-light); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(214,180,106,0.55);
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 14px 35px rgba(184,134,59,0.22);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 20px 45px rgba(184,134,59,0.3); }
+
+    .btn.secondary {
+      color: var(--white);
+      background: transparent;
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-items: center;
+      padding: 90px 0 70px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--gold-light);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 46px;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      margin-bottom: 28px;
+      max-width: 860px;
+    }
+
+    .hero p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 690px;
+      margin-bottom: 34px;
+    }
+
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .statement-card {
+      position: relative;
+      border: 1px solid rgba(214,180,106,0.28);
+      background: linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .statement-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 1px solid rgba(214,180,106,0.28);
+      right: -70px;
+      top: -70px;
+    }
+
+    .statement-card::after {
+      content: "AB";
+      position: absolute;
+      right: 26px;
+      bottom: -10px;
+      font-size: 130px;
+      line-height: 1;
+      color: rgba(255,255,255,0.035);
+      font-weight: 700;
+    }
+
+    .quote {
+      font-size: 34px;
+      line-height: 1.18;
+      color: var(--cream);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .meta-list {
+      list-style: none;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .meta-list li {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .meta-list strong { color: var(--gold-light); font-weight: 700; }
+
+    section { padding: 90px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      border-radius: var(--radius);
+      padding: 28px;
+      min-height: 260px;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214,180,106,0.42);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .number {
+      font-family: Arial, sans-serif;
+      color: var(--gold-light);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 25px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .card p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid rgba(214,180,106,0.22);
+      background: linear-gradient(160deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
+      border-radius: var(--radius);
+      padding: 34px;
+    }
+
+    .panel h2 { font-size: 44px; line-height: 1; margin-bottom: 20px; }
+    .panel p { font-family: Arial, sans-serif; color: var(--muted); margin-bottom: 22px; }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.04);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+    }
+
+    .step strong {
+      color: var(--gold-light);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .step h3 { font-size: 23px; margin-bottom: 8px; }
+    .step p { font-family: Arial, sans-serif; color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .stat b {
+      display: block;
+      font-size: 34px;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat span {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact {
+      text-align: center;
+      border: 1px solid rgba(214,180,106,0.28);
+      background: linear-gradient(135deg, rgba(184,134,59,0.16), rgba(255,255,255,0.05));
+      border-radius: 34px;
+      padding: 70px 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact h2 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 22px;
+    }
+
+    .contact p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .split { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      nav ul { display: none; }
+      .statement-card { min-height: auto; }
+    }
+
+    @media (max-width: 620px) {
+      .cards, .stats { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 18px; }
+      .step { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="container">
-            <div class="logo">AB</div>
-            <div class="nav-links">
-                <a href="#home" class="active">Home</a>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand"><span class="mark">AB</span><span>Adonis Borneo</span></a>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="animate-text">Hi, I'm Adonis Borneo</h1>
-                <div class="typewriter">
-                    <span id="typed-text"></span>
-                    <span class="cursor">|</span>
-                </div>
-                <p class="hero-description">
-                    A passionate developer specializing in creating modern web applications 
-                    and beautiful user experiences. I transform ideas into elegant, functional solutions.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                    <a href="#projects" class="btn btn-secondary">View My Work</a>
-                </div>
-            </div>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Investment & Strategic Consulting</span>
+          <h1>Building serious projects through strategy, structure and trusted execution.</h1>
+          <p>
+            I support investors, companies and project owners with business development, investment positioning,
+            documentation coordination, economic analysis and partnership strategy across Croatia and international markets.
+          </p>
+          <div class="actions">
+            <a class="btn" href="mailto:adonisborneosalihi@gmail.com">Start a Conversation</a>
+            <a class="btn secondary" href="#services">View Services</a>
+          </div>
         </div>
+
+        <aside class="statement-card" aria-label="Professional statement">
+          <div class="quote">“I look at every serious project as if it were my own.”</div>
+          <ul class="meta-list">
+            <li><span>Focus</span><strong>Investments</strong></li>
+            <li><span>Field</span><strong>Consulting</strong></li>
+            <li><span>Base</span><strong>Zagreb, Croatia</strong></li>
+            <li><span>Network</span><strong>EU / UAE</strong></li>
+          </ul>
+        </aside>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <div class="about-card">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Experience</h3>
-                    <ul>
-                        <li>IT Manager at Cybersun</li>
-                        <li>Advisor at Croatian Parliament</li>
-                        <li>Real Estate Manager (Self-Employed)</li>
-                        <li>Web Developer Intern at EuroArt93</li>
-                    </ul>
-                </div>
-                <div class="about-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Education</h3>
-                    <ul>
-                        <li>Bachelor's in Information Technology - RIT Croatia</li>
-                        <li>Mechanical Drafting and CAD/CADD - Tehnička Škola Sisak</li>
-                    </ul>
-                </div>
-                <div class="about-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Core Competencies</h3>
-                    <ul>
-                        <li>Full-Stack Development</li>
-                        <li>IT Infrastructure Management</li>
-                        <li>Project Management</li>
-                        <li>Digital Marketing & Social Media</li>
-                    </ul>
-                </div>
-                <div class="about-card">
-                    <i class="fas fa-language"></i>
-                    <h3>Languages</h3>
-                    <ul>
-                        <li>Croatian (Native)</li>
-                        <li>English (Native)</li>
-                        <li>Serbian (Native)</li>
-                        <li>German, Italian, Spanish, Turkish (Limited)</li>
-                    </ul>
-                </div>
-            </div>
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Consulting Services</h2>
+          <p>Clear advisory support for serious business initiatives, from early concept to investor-ready execution.</p>
         </div>
+
+        <div class="cards">
+          <article class="card">
+            <span class="number">01</span>
+            <h3>Investment Strategy</h3>
+            <p>Structuring opportunities, defining value propositions, preparing investor narratives and positioning projects for funding discussions.</p>
+          </article>
+
+          <article class="card">
+            <span class="number">02</span>
+            <h3>Project Documentation</h3>
+            <p>Coordination of presentations, business overviews, supporting documents, project summaries and communication packages.</p>
+          </article>
+
+          <article class="card">
+            <span class="number">03</span>
+            <h3>Economic Consulting</h3>
+            <p>Financial logic, SWOT analysis, market reasoning, profitability assumptions and strategic decision support.</p>
+          </article>
+
+          <article class="card">
+            <span class="number">04</span>
+            <h3>Business Development</h3>
+            <p>Identifying partnerships, preparing outreach, building credibility and opening conversations with relevant stakeholders.</p>
+          </article>
+
+          <article class="card">
+            <span class="number">05</span>
+            <h3>Government & Institutional Relations</h3>
+            <p>Support in preparing professional communication with public bodies, institutions, municipalities and strategic partners.</p>
+          </article>
+
+          <article class="card">
+            <span class="number">06</span>
+            <h3>Project Management</h3>
+            <p>Helping organize tasks, timelines, responsibilities and communication between investors, advisors, consultants and operators.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skills-category">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-bars">
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>React.js</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" data-percent="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>JavaScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" data-percent="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>HTML/CSS</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" data-percent="95"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3>Backend Development</h3>
-                    <div class="skill-bars">
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Swift</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" data-percent="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Java</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" data-percent="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Python</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" data-percent="85"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="approach">
+      <div class="container split">
+        <div class="panel">
+          <span class="eyebrow">Method</span>
+          <h2>From idea to investor-ready structure.</h2>
+          <p>
+            The goal is not only to make a project look professional. The goal is to make it understandable,
+            credible and ready for serious business conversations.
+          </p>
+          <a class="btn" href="#contact">Discuss a Project</a>
         </div>
+
+        <div class="timeline">
+          <div class="step">
+            <strong>Phase 1</strong>
+            <div>
+              <h3>Assessment</h3>
+              <p>Understanding the project, stakeholders, opportunity, risks and commercial logic.</p>
+            </div>
+          </div>
+          <div class="step">
+            <strong>Phase 2</strong>
+            <div>
+              <h3>Positioning</h3>
+              <p>Defining how the project should be presented to investors, partners or institutions.</p>
+            </div>
+          </div>
+          <div class="step">
+            <strong>Phase 3</strong>
+            <div>
+              <h3>Documentation</h3>
+              <p>Preparing structured materials, pitch content, summaries and professional communication.</p>
+            </div>
+          </div>
+          <div class="step">
+            <strong>Phase 4</strong>
+            <div>
+              <h3>Execution Support</h3>
+              <p>Coordinating conversations, next steps, meetings and project development workflow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <div class="contact-content centered">
-                <div class="contact-info">
-                    <div class="contact-item animate-on-scroll">
-                        <i class="fas fa-envelope bounce"></i>
-                        <h3>Email</h3>
-                        <a href="mailto:adonisborneosalihi@gmail.com" class="email-link">
-                            adonisborneosalihi@gmail.com
-                        </a>
-                    </div>
-                    <div class="contact-item animate-on-scroll">
-                        <i class="fas fa-code-branch rotate"></i>
-                        <h3>Projects</h3>
-                        <p>Check out my work on GitHub</p>
-                        <a href="https://github.com/AdonisBorneo" target="_blank" class="github-link">
-                            <i class="fab fa-github"></i>
-                            View My Projects
-                        </a>
-                    </div>
-                    <div class="contact-item animate-on-scroll">
-                        <i class="fab fa-linkedin rotate"></i>
-                        <h3>LinkedIn</h3>
-                        <p>Connect with me on LinkedIn</p>
-                        <a href="https://www.linkedin.com/in/adonis-borneo-salihi-1b0756191/" class="github-link linkedin-link">
-                            <i class="fab fa-linkedin"></i>
-                            Connect on LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section id="profile">
+      <div class="container">
+        <div class="section-head">
+          <h2>Professional Profile</h2>
+          <p>A background combining technology, business, management, real estate, institutional communication and international deal flow.</p>
         </div>
+
+        <div class="stats">
+          <div class="stat"><b>EU</b><span>Croatia-based business network</span></div>
+          <div class="stat"><b>UAE</b><span>International investment interest</span></div>
+          <div class="stat"><b>4+</b><span>Business sectors experienced</span></div>
+          <div class="stat"><b>360°</b><span>Project-to-partner coordination</span></div>
+        </div>
+      </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Adonis Borneo. All rights reserved.</p>
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <span class="eyebrow">Contact</span>
+          <h2>Let’s build the next serious opportunity.</h2>
+          <p>
+            For investment consulting, project documentation, business development or partnership discussions,
+            contact me directly by email.
+          </p>
+          <a class="btn" href="mailto:adonisborneosalihi@gmail.com">adonisborneosalihi@gmail.com</a>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 Adonis Borneo. All rights reserved.</span>
+      <span>Investment & Strategic Consulting</span>
+    </div>
+  </footer>
 </body>
-</html> 
+</html>
