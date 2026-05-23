@@ -129,6 +129,29 @@
 
     nav a:hover { color: var(--gold-light); }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .language-select {
+      border: 1px solid rgba(214,180,106,0.35);
+      background: rgba(255,255,255,0.055);
+      color: var(--cream);
+      border-radius: 999px;
+      padding: 10px 13px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .language-select option {
+      background: var(--navy);
+      color: var(--cream);
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -602,15 +625,21 @@
   <header>
     <div class="container nav">
       <a href="#home" class="brand"><span class="mark"><span>AB</span></span><span>Adonis Borneo</span></a>
-      <nav>
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#markets">Markets</a></li>
-          <li><a href="#approach">Approach</a></li>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="nav-actions">
+        <nav>
+          <ul>
+            <li><a href="#services" data-i18n="nav.services">Services</a></li>
+            <li><a href="#markets" data-i18n="nav.markets">Markets</a></li>
+            <li><a href="#approach" data-i18n="nav.approach">Approach</a></li>
+            <li><a href="#profile" data-i18n="nav.profile">Profile</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <select class="language-select" id="languageSelect" aria-label="Select language">
+          <option value="en">EN</option>
+          <option value="hr">HR</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -618,28 +647,28 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Private Strategic Advisory</span>
-          <h1>Strategy for serious capital.</h1>
-          <p>
+          <span class="eyebrow" data-i18n="hero.eyebrow">Private Strategic Advisory</span>
+          <h1 data-i18n="hero.title">Strategy for serious capital.</h1>
+          <p data-i18n="hero.text">
             I help investors, founders, project owners and strategic partners turn complex opportunities into clear, credible and investor-ready strategies across the EU, UAE, China, the USA and selected African markets.
           </p>
           <div class="actions">
-            <a class="btn" href="mailto:adonisborneosalihi@gmail.com">Start a Conversation</a>
-            <a class="btn secondary" href="#services">View Advisory Areas</a>
+            <a class="btn" href="mailto:adonisborneosalihi@gmail.com" data-i18n="hero.cta">Start a Conversation</a>
+            <a class="btn secondary" href="#services" data-i18n="hero.secondary">View Advisory Areas</a>
           </div>
-          <div class="signature-line">Clear vision. Serious execution.</div>
+          <div class="signature-line" data-i18n="hero.signature">Clear vision. Serious execution.</div>
         </div>
 
         <aside class="statement-card" aria-label="Professional statement">
           <div class="seal">Strategic<br>Access</div>
-          <div class="quote">“My role is simple: make serious opportunities look credible, structured and impossible to ignore.”</div>
+          <div class="quote" data-i18n="statement.quote">“My role is simple: make serious opportunities look credible, structured and impossible to ignore.”</div>
           <ul class="meta-list">
-            <li><span>Focus</span><strong>Investments</strong></li>
-            <li><span>Field</span><strong>Strategic Advisory</strong></li>
-            <li><span>Base</span><strong>Zagreb, Croatia</strong></li>
-            <li><span>Network</span><strong>EU / UAE / China / USA / Africa</strong></li>
+            <li><span data-i18n="meta.focusLabel">Focus</span><strong data-i18n="meta.focus">Investments</strong></li>
+            <li><span data-i18n="meta.fieldLabel">Field</span><strong data-i18n="meta.field">Strategic Advisory</strong></li>
+            <li><span data-i18n="meta.baseLabel">Base</span><strong>Zagreb, Croatia</strong></li>
+            <li><span data-i18n="meta.networkLabel">Network</span><strong>EU / UAE / China / USA / Africa</strong></li>
           </ul>
-          <div class="deal-note">Selected advisory focus: capital conversations, investor positioning, project documentation, market entry logic, institutional coordination and high-value business development.</div>
+          <div class="deal-note" data-i18n="statement.note">Selected advisory focus: capital conversations, investor positioning, project documentation, market entry logic, institutional coordination and high-value business development.</div>
         </aside>
       </div>
     </section>
@@ -647,8 +676,8 @@
     <section id="services">
       <div class="container">
         <div class="section-head">
-          <h2>Advisory Areas</h2>
-          <p>Built for projects where presentation, credibility and strategic access can change the entire outcome.</p>
+          <h2 data-i18n="services.title">Advisory Areas</h2>
+          <p data-i18n="services.text">Built for projects where presentation, credibility and strategic access can change the entire outcome.</p>
         </div>
 
         <div class="cards">
@@ -712,8 +741,8 @@
     <section id="markets">
       <div class="container">
         <div class="section-head">
-          <h2>Cross-Border Focus</h2>
-          <p>Designed for opportunities that move between markets, capital sources, institutions and strategic partners across Europe, the Middle East, Asia, North America and Africa.</p>
+          <h2 data-i18n="markets.title">Cross-Border Focus</h2>
+          <p data-i18n="markets.text">Designed for opportunities that move between markets, capital sources, institutions and strategic partners across Europe, the Middle East, Asia, North America and Africa.</p>
         </div>
 
         <div class="market-grid">
@@ -764,12 +793,12 @@
       <div class="container split">
         <div class="panel">
           <span class="eyebrow">Method</span>
-          <h2>From raw opportunity to serious investor narrative.</h2>
-          <p>
+          <h2 data-i18n="approach.title">From raw opportunity to serious investor narrative.</h2>
+          <p data-i18n="approach.text">
             The goal is not only to make a project look professional. The goal is to make it feel inevitable,
             bankable, strategically positioned and ready for the room where decisions are made.
           </p>
-          <a class="btn" href="#contact">Discuss a Project</a>
+          <a class="btn" href="#contact" data-i18n="approach.cta">Discuss a Project</a>
         </div>
 
         <div class="timeline">
@@ -808,8 +837,8 @@
     <section id="profile">
       <div class="container">
         <div class="section-head">
-          <h2>Why It Feels Different</h2>
-          <p>A profile positioned at the intersection of investment logic, business development, project strategy, institutional communication and international deal flow.</p>
+          <h2 data-i18n="profile.title">Why It Feels Different</h2>
+          <p data-i18n="profile.text">A profile positioned at the intersection of investment logic, business development, project strategy, institutional communication and international deal flow.</p>
         </div>
 
         <div class="stats">
@@ -825,9 +854,9 @@
     <section id="contact">
       <div class="container">
         <div class="contact">
-          <span class="eyebrow">Contact</span>
-          <h2>Serious projects need serious positioning.</h2>
-          <p>
+          <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+          <h2 data-i18n="contact.title">Serious projects need serious positioning.</h2>
+          <p data-i18n="contact.text">
             For investment advisory, project documentation, business development, market positioning or strategic partnership discussions,
             contact me directly.
           </p>
@@ -843,5 +872,115 @@
       <span>Private Strategic Advisory</span>
     </div>
   </footer>
+<script>
+    const translations = {
+      en: {
+        "nav.services": "Services",
+        "nav.markets": "Markets",
+        "nav.approach": "Approach",
+        "nav.profile": "Profile",
+        "nav.contact": "Contact",
+        "hero.eyebrow": "Private Strategic Advisory",
+        "hero.title": "Strategy for serious capital.",
+        "hero.text": "I help investors, founders, project owners and strategic partners turn complex opportunities into clear, credible and investor-ready strategies across the EU, UAE, China, the USA and selected African markets.",
+        "hero.cta": "Start a Conversation",
+        "hero.secondary": "View Advisory Areas",
+        "hero.signature": "Clear vision. Serious execution.",
+        "statement.quote": "“My role is simple: make serious opportunities look credible, structured and impossible to ignore.”",
+        "statement.note": "Selected advisory focus: capital conversations, investor positioning, project documentation, market entry logic, institutional coordination and high-value business development.",
+        "meta.focusLabel": "Focus",
+        "meta.focus": "Investments",
+        "meta.fieldLabel": "Field",
+        "meta.field": "Strategic Advisory",
+        "meta.baseLabel": "Base",
+        "meta.networkLabel": "Network",
+        "services.title": "Advisory Areas",
+        "services.text": "Built for projects where presentation, credibility and strategic access can change the entire outcome.",
+        "markets.title": "Cross-Border Focus",
+        "markets.text": "Designed for opportunities that move between markets, capital sources, institutions and strategic partners across Europe, the Middle East, Asia, North America and Africa.",
+        "approach.title": "From raw opportunity to serious investor narrative.",
+        "approach.text": "The goal is not only to make a project look professional. The goal is to make it feel inevitable, bankable, strategically positioned and ready for the room where decisions are made.",
+        "approach.cta": "Discuss a Project",
+        "profile.title": "Why It Feels Different",
+        "profile.text": "A profile positioned at the intersection of investment logic, business development, project strategy, institutional communication and international deal flow.",
+        "contact.eyebrow": "Contact",
+        "contact.title": "Serious projects need serious positioning.",
+        "contact.text": "For investment advisory, project documentation, business development, market positioning or strategic partnership discussions, contact me directly."
+      },
+      hr: {
+        "nav.services": "Usluge",
+        "nav.markets": "Tržišta",
+        "nav.approach": "Pristup",
+        "nav.profile": "Profil",
+        "nav.contact": "Kontakt",
+        "hero.eyebrow": "Privatno strateško savjetovanje",
+        "hero.title": "Strategija za ozbiljan kapital.",
+        "hero.text": "Pomažem investitorima, osnivačima, vlasnicima projekata i strateškim partnerima pretvoriti kompleksne prilike u jasne, vjerodostojne i investitorima spremne strategije kroz EU, UAE, Kinu, SAD i odabrana afrička tržišta.",
+        "hero.cta": "Započni razgovor",
+        "hero.secondary": "Pogledaj područja savjetovanja",
+        "hero.signature": "Jasna vizija. Ozbiljna realizacija.",
+        "statement.quote": "“Moja uloga je jednostavna: ozbiljne prilike učiniti vjerodostojnima, strukturiranima i nemogućima za ignorirati.”",
+        "statement.note": "Odabrani fokus savjetovanja: razgovori o kapitalu, pozicioniranje prema investitorima, projektna dokumentacija, logika ulaska na tržište, institucionalna koordinacija i poslovni razvoj visoke vrijednosti.",
+        "meta.focusLabel": "Fokus",
+        "meta.focus": "Investicije",
+        "meta.fieldLabel": "Područje",
+        "meta.field": "Strateško savjetovanje",
+        "meta.baseLabel": "Baza",
+        "meta.networkLabel": "Mreža",
+        "services.title": "Područja savjetovanja",
+        "services.text": "Za projekte kod kojih prezentacija, kredibilitet i strateški pristup mogu promijeniti cijeli ishod.",
+        "markets.title": "Međunarodni fokus",
+        "markets.text": "Za prilike koje se kreću između tržišta, izvora kapitala, institucija i strateških partnera kroz Europu, Bliski istok, Aziju, Sjevernu Ameriku i Afriku.",
+        "approach.title": "Od sirove prilike do ozbiljne investitorske priče.",
+        "approach.text": "Cilj nije samo da projekt izgleda profesionalno. Cilj je da djeluje neizbježno, financijski uvjerljivo, strateški pozicionirano i spremno za prostoriju u kojoj se donose odluke.",
+        "approach.cta": "Razgovarajmo o projektu",
+        "profile.title": "Zašto djeluje drugačije",
+        "profile.text": "Profil pozicioniran na sjecištu investicijske logike, poslovnog razvoja, projektne strategije, institucionalne komunikacije i međunarodnog poslovnog toka.",
+        "contact.eyebrow": "Kontakt",
+        "contact.title": "Ozbiljni projekti trebaju ozbiljno pozicioniranje.",
+        "contact.text": "Za investicijsko savjetovanje, projektnu dokumentaciju, poslovni razvoj, tržišno pozicioniranje ili strateška partnerstva, kontaktirajte me direktno."
+      }
+    };
+
+    const languageSelect = document.getElementById("languageSelect");
+
+    function applyLanguage(lang) {
+      const selected = translations[lang] ? lang : "en";
+      document.documentElement.lang = selected;
+      languageSelect.value = selected;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (translations[selected][key]) {
+          element.textContent = translations[selected][key];
+        }
+      });
+      localStorage.setItem("preferredLanguage", selected);
+    }
+
+    async function detectLanguageByIp() {
+      const savedLanguage = localStorage.getItem("preferredLanguage");
+      if (savedLanguage) {
+        applyLanguage(savedLanguage);
+        return;
+      }
+
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        const croatianSpeakingCountries = ["HR", "BA", "RS", "ME"];
+        const language = croatianSpeakingCountries.includes(data.country_code) ? "hr" : "en";
+        applyLanguage(language);
+      } catch (error) {
+        const browserLanguage = navigator.language || navigator.userLanguage || "en";
+        applyLanguage(browserLanguage.toLowerCase().startsWith("hr") ? "hr" : "en");
+      }
+    }
+
+    languageSelect.addEventListener("change", (event) => {
+      applyLanguage(event.target.value);
+    });
+
+    detectLanguageByIp();
+  </script>
 </body>
 </html>
