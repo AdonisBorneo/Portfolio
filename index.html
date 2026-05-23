@@ -72,7 +72,7 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-size: 14px;
@@ -80,15 +80,42 @@
     }
 
     .mark {
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(214,180,106,0.55);
-      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      position: relative;
+      border: 1px solid rgba(214,180,106,0.65);
+      border-radius: 16px;
       display: grid;
       place-items: center;
       color: var(--gold-light);
-      background: linear-gradient(145deg, rgba(184,134,59,0.18), rgba(255,255,255,0.04));
-      box-shadow: 0 0 30px rgba(184,134,59,0.18);
+      background:
+        linear-gradient(145deg, rgba(184,134,59,0.26), rgba(255,255,255,0.035)),
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 32%);
+      box-shadow: 0 0 34px rgba(184,134,59,0.20);
+      transform: rotate(45deg);
+      overflow: hidden;
+    }
+
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1px solid rgba(246,241,232,0.22);
+      border-radius: 10px;
+    }
+
+    .mark::after {
+      inset: 18px;
+      background: rgba(214,180,106,0.16);
+    }
+
+    .mark span {
+      position: relative;
+      z-index: 1;
+      transform: rotate(-45deg);
+      font-size: 13px;
+      letter-spacing: 0.03em;
     }
 
     nav ul {
@@ -170,8 +197,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 60px;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 52px;
       align-items: center;
     }
 
@@ -195,11 +222,11 @@
     }
 
     h1 {
-      font-size: clamp(48px, 7vw, 92px);
-      line-height: 0.95;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 0.96;
       letter-spacing: -0.05em;
       margin-bottom: 28px;
-      max-width: 860px;
+      max-width: 760px;
     }
 
     .hero p {
@@ -536,6 +563,8 @@
 
     @media (max-width: 920px) {
       .hero-grid, .split { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding: 72px 0 56px; }
+      .hero-grid { gap: 34px; }
       .cards { grid-template-columns: 1fr 1fr; }
       .market-grid { grid-template-columns: 1fr 1fr; }
       .stats { grid-template-columns: 1fr 1fr; }
@@ -544,19 +573,35 @@
     }
 
     @media (max-width: 620px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav { padding: 16px 0; }
+      .brand { font-size: 12px; gap: 10px; }
+      .mark { width: 44px; height: 44px; border-radius: 14px; }
+      .hero { padding: 56px 0 44px; }
+      .eyebrow { font-size: 11px; letter-spacing: 0.16em; margin-bottom: 18px; }
+      .eyebrow::before { width: 30px; }
+      h1 { font-size: clamp(42px, 14vw, 58px); line-height: 0.98; margin-bottom: 22px; }
+      .hero p { font-size: 16px; margin-bottom: 26px; }
+      .signature-line { grid-template-columns: 58px 1fr; font-size: 11px; margin-top: 24px; }
+      .statement-card { padding: 26px; border-radius: 22px; }
+      .quote { font-size: 25px; padding-right: 70px; }
+      .seal { width: 78px; height: 78px; right: 22px; top: 22px; font-size: 9px; }
+      .deal-note { font-size: 13px; padding: 18px; }
+      section { padding: 62px 0; }
       .cards, .market-grid, .stats { grid-template-columns: 1fr; }
-      .section-head { display: block; }
+      .section-head { display: block; margin-bottom: 28px; }
       .section-head p { margin-top: 18px; }
       .step { grid-template-columns: 1fr; }
       .actions { flex-direction: column; }
-      .btn { width: 100%; }
+      .btn { width: 100%; padding: 15px 18px; }
+      .contact { padding: 52px 22px; border-radius: 26px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a href="#home" class="brand"><span class="mark">AB</span><span>Adonis Borneo</span></a>
+      <a href="#home" class="brand"><span class="mark"><span>AB</span></span><span>Adonis Borneo</span></a>
       <nav>
         <ul>
           <li><a href="#services">Services</a></li>
@@ -574,16 +619,15 @@
       <div class="container hero-grid">
         <div>
           <span class="eyebrow">Private Strategic Advisory</span>
-          <h1>For people building things too serious for ordinary consulting.</h1>
+          <h1>Strategy for serious capital.</h1>
           <p>
-            I work with investors, founders, project owners and strategic partners on opportunities that require structure,
-            discretion, sharp positioning and international coordination across the EU, UAE, China, the USA and selected African markets.
+            I help investors, founders, project owners and strategic partners turn complex opportunities into clear, credible and investor-ready strategies across the EU, UAE, China, the USA and selected African markets.
           </p>
           <div class="actions">
             <a class="btn" href="mailto:adonisborneosalihi@gmail.com">Start a Conversation</a>
             <a class="btn secondary" href="#services">View Advisory Areas</a>
           </div>
-          <div class="signature-line">Strategy. Capital. Access. Execution.</div>
+          <div class="signature-line">Clear vision. Serious execution.</div>
         </div>
 
         <aside class="statement-card" aria-label="Professional statement">
